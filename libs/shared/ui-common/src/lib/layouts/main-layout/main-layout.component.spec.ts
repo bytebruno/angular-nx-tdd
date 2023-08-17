@@ -2,6 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MainLayoutComponent } from './main-layout.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
+import { HeaderComponent } from '../../components/header/header.component';
+import { MaterialModule } from '../../material.module';
 
 describe('MainLayoutComponent', () => {
   let component: MainLayoutComponent;
@@ -9,8 +11,8 @@ describe('MainLayoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
-      declarations: [MainLayoutComponent],
+      imports: [RouterTestingModule, MaterialModule],
+      declarations: [MainLayoutComponent, HeaderComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(MainLayoutComponent);
