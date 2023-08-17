@@ -2,7 +2,9 @@
   "name": "@angular-nx-tdd/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "start": "npx nx serve angular-nx-tdd"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~16.1.0",
@@ -13,6 +15,9 @@
     "@angular/platform-browser": "~16.1.0",
     "@angular/platform-browser-dynamic": "~16.1.0",
     "@angular/router": "~16.1.0",
+    "@ngrx/effects": "^16.2.0",
+    "@ngrx/entity": "^16.2.0",
+    "@ngrx/store": "^16.2.0",
     "@nx/angular": "16.4.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
@@ -29,6 +34,8 @@
     "@angular/cli": "~16.1.0",
     "@angular/compiler-cli": "~16.1.0",
     "@angular/language-service": "~16.1.0",
+    "@ngrx/eslint-plugin": "^16.2.0",
+    "@ngrx/store-devtools": "^16.2.0",
     "@nx/cypress": "16.4.1",
     "@nx/eslint-plugin": "16.4.1",
     "@nx/jest": "16.4.1",
