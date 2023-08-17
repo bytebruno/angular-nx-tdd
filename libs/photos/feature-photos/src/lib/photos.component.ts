@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PhotosFacade } from '@undefined/photos/domain';
+import { PhotosFacade } from '@angular-nx-tdd/photos/domain';
 
 @Component({
   selector: 'photos-photos',
