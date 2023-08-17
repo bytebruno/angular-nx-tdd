@@ -1,6 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { PhotosComponent } from './photos.component';
+import { PhotosComponent } from './screens/photos/photos.component';
 
 export const APP_ROUTES: Routes = [
   {
