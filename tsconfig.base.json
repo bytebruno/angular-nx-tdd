@@ -15,6 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@angular-nx-tdd/photos/domain": ["libs/photos/domain/src/index.ts"],
+      "@angular-nx-tdd/photos/feature-photos": [
+        "libs/photos/feature-photos/src/index.ts"
+      ],
       "@angular-nx-tdd/shared/ui-common": ["libs/shared/ui-common/src/index.ts"]
     }
   },

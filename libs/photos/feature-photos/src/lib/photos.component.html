@@ -1,0 +1,9 @@
+<h1>photos-photos</h1>
+
+<table class="table">
+  <tr *ngFor="let photos of photosList$ | async">
+    <td>{{ photos.id }}</td>
+    <td>{{ photos.name }}</td>
+    <td>{{ photos.description }}</td>
+  </tr>
+</table>
