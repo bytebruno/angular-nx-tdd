@@ -5,7 +5,7 @@ import { FavoritesComponent } from './screens/favorites/favorites.component';
 
 export const APP_ROUTES: Routes = [
   {
-    path: 'photos',
+    path: '',
     component: PhotosComponent,
   },
   {

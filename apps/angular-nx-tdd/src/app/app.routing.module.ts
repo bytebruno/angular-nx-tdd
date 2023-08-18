@@ -6,11 +6,6 @@ import { MainLayoutComponent } from '@angular-nx-tdd/shared/ui-common';
 export const APP_ROUTES: Routes = [
   {
     path: '',
-    redirectTo: 'photos',
-    pathMatch: 'full',
-  },
-  {
-    path: '',
     component: MainLayoutComponent,
     children: [
       {
@@ -24,7 +19,7 @@ export const APP_ROUTES: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'photos',
+    redirectTo: '',
   },
 ];
 
