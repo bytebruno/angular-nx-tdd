@@ -1,5 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PhotoGridComponent } from './photo-grid.component';
+import { Photo } from '@angular-nx-tdd/photos/domain';
+
+const mockedPhoto: Photo = {
+  id: '9',
+  author: 'Alejandro Escamilla',
+  width: 5000,
+  height: 3269,
+  url: 'https://unsplash.com/photos/ABDTiLqDhJA',
+  download_url: 'https://picsum.photos/id/9/5000/3269',
+};
 
 describe('PhotoGridComponent', () => {
   let component: PhotoGridComponent;
@@ -17,5 +27,12 @@ describe('PhotoGridComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should emit event when cardClicked is called', () => {
+    const emitSpy = jest.spyOn(component.clickEventEmitter, 'emit');
+    component.cardClicked(mockedPhoto);
+    expect(emitSpy).toHaveBeenCalledTimes(1);
+    expect(emitSpy).toHaveBeenCalledWith(mockedPhoto);
   });
 });
