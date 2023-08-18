@@ -6,6 +6,7 @@ import { PhotosFeaturePhotosRoutingModule } from './photos-feature-photos.routin
 import { FavoritesComponent } from './screens/favorites/favorites.component';
 import { PhotoCardComponent } from './components/photo-card/photo-card.component';
 import { SharedUiCommonModule } from '@angular-nx-tdd/shared/ui-common';
+import { PhotoGridComponent } from './components/photo-grid/photo-grid.component';
 
 @NgModule({
   imports: [
@@ -14,7 +15,12 @@ import { SharedUiCommonModule } from '@angular-nx-tdd/shared/ui-common';
     PhotosFeaturePhotosRoutingModule,
     SharedUiCommonModule,
   ],
-  declarations: [PhotosComponent, FavoritesComponent, PhotoCardComponent],
+  declarations: [
+    PhotosComponent,
+    FavoritesComponent,
+    PhotoCardComponent,
+    PhotoGridComponent,
+  ],
   exports: [PhotosComponent],
 })
 export class PhotosFeaturePhotosModule {}
