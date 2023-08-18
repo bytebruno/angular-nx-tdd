@@ -38,4 +38,42 @@ describe('ScrollTrackerComponent', () => {
 
     expect(emitSpy).toHaveBeenCalled();
   });
+
+  it('should not emit scrolled event when element intersects viewport and hasIntersected is false', () => {
+    const emitSpy = jest.spyOn(component.scrolled, 'emit');
+
+    const mockEntry = { isIntersecting: true } as IntersectionObserverEntry;
+
+    component['hasIntersected'] = false;
+    component.emitScrollEvent(mockEntry);
+
+    expect(emitSpy).not.toHaveBeenCalled();
+  });
+
+  it('should not emit scrolled event when element is not intersected in viewport and hasIntersected before', () => {
+    const emitSpy = jest.spyOn(component.scrolled, 'emit');
+
+    const mockEntry = { isIntersecting: false } as IntersectionObserverEntry;
+
+    component['hasIntersected'] = true;
+    component.emitScrollEvent(mockEntry);
+
+    expect(emitSpy).not.toHaveBeenCalled();
+  });
+
+  it('should disconnect observer on ngOnDestroy', () => {
+    const disconnectSpy = jest.spyOn(component['observer'], 'disconnect');
+
+    component.ngOnDestroy();
+
+    expect(disconnectSpy).toHaveBeenCalled();
+  });
+
+  it('should not throw error on ngOnDestroy when observer is not defined', () => {
+    component['observer'] = undefined;
+
+    expect(() => {
+      component.ngOnDestroy();
+    }).not.toThrow();
+  });
 });
