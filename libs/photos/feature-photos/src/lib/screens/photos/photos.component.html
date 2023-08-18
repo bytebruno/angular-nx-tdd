@@ -3,3 +3,4 @@
     <photos-photo-grid [photos]="photos"></photos-photo-grid>
   </ng-container>
 </ui-scroll-tracker>
+<common-spinner *ngIf="(loaded$ | async) === false"></common-spinner>
