@@ -1,21 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Photo } from '../entities/photo';
 
 @Injectable({ providedIn: 'root' })
 export class PhotosDataService {
   constructor(private http: HttpClient) {}
+  private _apiUrl = 'https://picsum.photos/v2/list';
 
   load(): Observable<Photo[]> {
-    // Uncomment if needed
-    /*
-        const url = '...';
-        const params = new HttpParams().set('param', 'value');
-        const headers = new HttpHeaders().set('Accept', 'application/json');
-        return this.http.get<Photos[]>(url, {params, headers});
-        */
+    const params = new HttpParams().set('page', 1);
+    const headers = new HttpHeaders().set('Accept', 'application/json');
 
-    return of([]);
+    return this.http.get<Photo[]>(this._apiUrl, { params, headers });
   }
 }

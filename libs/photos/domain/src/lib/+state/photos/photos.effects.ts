@@ -7,8 +7,8 @@ import { PhotosDataService } from '../../infrastructure/photos.data.service';
 
 @Injectable()
 export class PhotosEffects {
-  loadPhotos$ = createEffect(() =>
-    this.actions$.pipe(
+  loadPhotos$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(PhotosActions.loadPhotos),
       switchMap((action) =>
         this.photosDataService.load().pipe(
@@ -16,8 +16,8 @@ export class PhotosEffects {
           catchError((error) => of(PhotosActions.loadPhotosFailure({ error })))
         )
       )
-    )
-  );
+    );
+  });
 
   constructor(
     private actions$: Actions,
