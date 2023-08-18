@@ -11,6 +11,7 @@ export interface State extends EntityState<Photo> {
   loaded: boolean;
   error?: string | null;
   currentPage: number;
+  favorites: EntityState<Photo>;
 }
 
 export interface PhotosPartialState {
@@ -18,11 +19,14 @@ export interface PhotosPartialState {
 }
 
 export const photosAdapter: EntityAdapter<Photo> = createEntityAdapter<Photo>();
+export const favoritesAdapter: EntityAdapter<Photo> =
+  createEntityAdapter<Photo>();
 
 export const initialState: State = photosAdapter.getInitialState({
   // set initial required properties
   loaded: false,
   currentPage: 1,
+  favorites: favoritesAdapter.getInitialState(),
 });
 
 const photosReducer = createReducer(
@@ -47,6 +51,15 @@ const photosReducer = createReducer(
     (state, { error }): State => ({
       ...state,
       error,
+    })
+  ),
+  on(
+    PhotosActions.addFavorite,
+    (state, { photo }): State => ({
+      ...state,
+      favorites: favoritesAdapter.upsertOne(photo, {
+        ...state.favorites,
+      }),
     })
   )
 );

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { loadPhotos } from '../+state/photos/photos.actions';
+import { addFavorite, loadPhotos } from '../+state/photos/photos.actions';
 import * as PhotosSelectors from '../+state/photos/photos.selectors';
+import { Photo } from '../entities/photo';
 
 @Injectable({ providedIn: 'root' })
 export class PhotosFacade {
@@ -15,5 +16,9 @@ export class PhotosFacade {
 
   load(): void {
     this.store.dispatch(loadPhotos());
+  }
+
+  saveAsFavorite(photo: Photo): void {
+    this.store.dispatch(addFavorite({ photo }));
   }
 }

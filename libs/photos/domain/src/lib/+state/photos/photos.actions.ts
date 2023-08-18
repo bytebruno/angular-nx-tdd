@@ -12,3 +12,8 @@ export const loadPhotosFailure = createAction(
   '[Photos] Load Photos Failure',
   props<{ error: any }>()
 );
+
+export const addFavorite = createAction(
+  '[Photos] Add Favorite',
+  props<{ photo: Photo }>()
+);
