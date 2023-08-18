@@ -1,17 +1,32 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  TestBed,
+  fakeAsync,
+  tick,
+} from '@angular/core/testing';
 import { HeaderComponent } from './header.component';
 import { MaterialModule } from '../../material.module';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ChangeDetectionStrategy } from '@angular/core';
+import { Router } from '@angular/router';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
+  let router: Router;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MaterialModule, RouterTestingModule],
+      imports: [
+        MaterialModule,
+        RouterTestingModule.withRoutes([
+          { path: 'photos', component: HeaderComponent },
+          { path: 'favorites', component: HeaderComponent },
+        ]),
+        NoopAnimationsModule,
+      ],
       declarations: [HeaderComponent],
     })
       .overrideComponent(HeaderComponent, {
@@ -20,6 +35,7 @@ describe('HeaderComponent', () => {
       .compileComponents();
 
     fixture = TestBed.createComponent(HeaderComponent);
+    router = TestBed.inject(Router);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -55,4 +71,18 @@ describe('HeaderComponent', () => {
     expect(buttons[0].classes['mat-accent']).toBe(undefined);
     expect(buttons[1].classes['mat-accent']).toBe(true);
   });
+
+  it('should redirect to photos on button click', fakeAsync(() => {
+    const photosBtn = fixture.debugElement.queryAll(By.css('button'))[0];
+    photosBtn.nativeElement.click();
+    tick();
+    expect(router.url).toBe('/photos');
+  }));
+
+  it('should redirect to favorites on button click', fakeAsync(() => {
+    const favBtn = fixture.debugElement.queryAll(By.css('button'))[1];
+    favBtn.nativeElement.click();
+    tick();
+    expect(router.url).toBe('/favorites');
+  }));
 });
