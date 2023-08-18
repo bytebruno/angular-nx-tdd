@@ -42,3 +42,8 @@ export const selectCurrentPage = createSelector(
   selectPhotosState,
   (state: State) => state.currentPage
 );
+
+export const selectFavorites = createSelector(
+  selectPhotosState,
+  (state: State) => selectAll(state.favorites)
+);

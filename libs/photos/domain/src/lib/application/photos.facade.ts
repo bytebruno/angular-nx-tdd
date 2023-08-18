@@ -7,10 +7,11 @@ import { Photo } from '../entities/photo';
 
 @Injectable({ providedIn: 'root' })
 export class PhotosFacade {
+  currentPage$ = this.store.select(PhotosSelectors.selectCurrentPage);
+  favorites$ = this.store.select(PhotosSelectors.selectFavorites);
   loaded$ = this.store.select(PhotosSelectors.selectPhotosLoaded);
   photosList$ = this.store.select(PhotosSelectors.selectAllPhotos);
   selectedPhotos$ = this.store.select(PhotosSelectors.selectSelected);
-  currentPage$ = this.store.select(PhotosSelectors.selectCurrentPage);
 
   constructor(private store: Store) {}
 
