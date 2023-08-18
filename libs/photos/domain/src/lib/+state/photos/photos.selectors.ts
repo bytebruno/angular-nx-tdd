@@ -1,44 +1,39 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import {
-  PHOTOS_FEATURE_KEY,
-  State,
-  PhotosPartialState,
-  photosAdapter,
-} from './photos.reducer';
+import { PHOTOS_FEATURE_KEY, State, photosAdapter } from './photos.reducer';
 
 // Lookup the 'Photos' feature state managed by NgRx
-export const getPhotosState = createFeatureSelector<PhotosPartialState, State>(
-  PHOTOS_FEATURE_KEY
-);
+export const selectPhotosState =
+  createFeatureSelector<State>(PHOTOS_FEATURE_KEY);
 
 const { selectAll, selectEntities } = photosAdapter.getSelectors();
 
-export const getPhotosLoaded = createSelector(
-  getPhotosState,
+export const selectPhotosLoaded = createSelector(
+  selectPhotosState,
   (state: State) => state.loaded
 );
 
-export const getPhotosError = createSelector(
-  getPhotosState,
+export const selectPhotosError = createSelector(
+  selectPhotosState,
   (state: State) => state.error
 );
 
-export const getAllPhotos = createSelector(getPhotosState, (state: State) =>
-  selectAll(state)
+export const selectAllPhotos = createSelector(
+  selectPhotosState,
+  (state: State) => selectAll(state)
 );
 
-export const getPhotosEntities = createSelector(
-  getPhotosState,
+export const selectPhotosEntities = createSelector(
+  selectPhotosState,
   (state: State) => selectEntities(state)
 );
 
-export const getSelectedId = createSelector(
-  getPhotosState,
+export const selectSelectedId = createSelector(
+  selectPhotosState,
   (state: State) => state.selectedId
 );
 
-export const getSelected = createSelector(
-  getPhotosEntities,
-  getSelectedId,
+export const selectSelected = createSelector(
+  selectPhotosEntities,
+  selectSelectedId,
   (entities, selectedId) => selectedId && entities[selectedId]
 );
