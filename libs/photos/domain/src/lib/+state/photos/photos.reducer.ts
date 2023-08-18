@@ -7,9 +7,10 @@ import { Photo } from '../../entities/photo';
 export const PHOTOS_FEATURE_KEY = 'photos-photos';
 
 export interface State extends EntityState<Photo> {
-  selectedId?: string | number; // which Photos record has been selected
-  loaded: boolean; // has the Photos list been loaded
-  error?: string | null; // last known error (if any)
+  selectedId?: string | number;
+  loaded: boolean;
+  error?: string | null;
+  currentPage: number;
 }
 
 export interface PhotosPartialState {
@@ -21,22 +22,37 @@ export const photosAdapter: EntityAdapter<Photo> = createEntityAdapter<Photo>();
 export const initialState: State = photosAdapter.getInitialState({
   // set initial required properties
   loaded: false,
+  currentPage: 1,
 });
 
 const photosReducer = createReducer(
   initialState,
-  on(PhotosActions.loadPhotos, (state) => ({
-    ...state,
-    loaded: false,
-    error: null,
-  })),
+  on(
+    PhotosActions.loadPhotos,
+    (state): State => ({
+      ...state,
+      loaded: false,
+      error: null,
+    })
+  ),
   on(PhotosActions.loadPhotosSuccess, (state, { photos }) =>
     photosAdapter.upsertMany(photos, { ...state, loaded: true })
   ),
-  on(PhotosActions.loadPhotosFailure, (state, { error }) => ({
-    ...state,
-    error,
-  }))
+  on(
+    PhotosActions.loadPhotosFailure,
+    (state, { error }): State => ({
+      ...state,
+      error,
+    })
+  ),
+  on(
+    PhotosActions.loadMorePhotos,
+    (state): State => ({
+      ...state,
+      loaded: false,
+      error: null,
+    })
+  )
 );
 
 export function reducer(state: State | undefined, action: Action) {
