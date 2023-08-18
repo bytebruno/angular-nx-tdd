@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PhotosComponent } from './photos.component';
-import { PhotosFacade } from '@angular-nx-tdd/photos/domain';
+import { Photo, PhotosFacade } from '@angular-nx-tdd/photos/domain';
 import { of } from 'rxjs';
 import { SharedUiCommonModule } from '@angular-nx-tdd/shared/ui-common';
 import { PhotoGridComponent } from '../../components/photo-grid/photo-grid.component';
@@ -11,6 +11,16 @@ const mockPhotosFacade = {
   loaded$: of(false),
   currentPage$: of(2),
   load: () => undefined,
+  saveAsFavorite: () => undefined,
+};
+
+const mockedPhoto: Photo = {
+  id: '9',
+  author: 'Alejandro Escamilla',
+  width: 5000,
+  height: 3269,
+  url: 'https://unsplash.com/photos/ABDTiLqDhJA',
+  download_url: 'https://picsum.photos/id/9/5000/3269',
 };
 
 describe('PhotosComponent', () => {
@@ -77,5 +87,19 @@ describe('PhotosComponent', () => {
     component.loaded = false;
     component.onScroll();
     expect(mockPhotosFacade.load).not.toHaveBeenCalled();
+  });
+
+  it('should not dispatch saveAsFavorite if photo is null', () => {
+    const spy = jest.spyOn(mockPhotosFacade, 'saveAsFavorite');
+    component.saveAsFavorite(null);
+    expect(mockPhotosFacade.saveAsFavorite).not.toHaveBeenCalled();
+    spy.mockClear();
+  });
+
+  it('should dispatch saveAsFavorite if photo is not null', () => {
+    const spy = jest.spyOn(mockPhotosFacade, 'saveAsFavorite');
+    component.saveAsFavorite(mockedPhoto);
+    expect(mockPhotosFacade.saveAsFavorite).toHaveBeenCalledTimes(1);
+    spy.mockClear();
   });
 });
