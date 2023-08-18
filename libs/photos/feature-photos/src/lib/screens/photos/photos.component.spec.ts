@@ -6,10 +6,17 @@ import { SharedUiCommonModule } from '@angular-nx-tdd/shared/ui-common';
 import { PhotoGridComponent } from '../../components/photo-grid/photo-grid.component';
 import { SharedUtilUiModule } from '@angular-nx-tdd/shared/util-ui';
 
+const mockPhotosFacade = {
+  photosList$: of([]),
+  loaded$: of(false),
+  currentPage$: of(2),
+  load: () => undefined,
+};
+
 describe('PhotosComponent', () => {
   let component: PhotosComponent;
   let fixture: ComponentFixture<PhotosComponent>;
-  let mockPhotosFacade: Partial<PhotosFacade>;
+  const loadSpy = jest.spyOn(mockPhotosFacade, 'load');
 
   beforeEach(async () => {
     window.IntersectionObserver = jest.fn().mockReturnValue({
@@ -17,12 +24,6 @@ describe('PhotosComponent', () => {
       unobserve: () => null,
       disconnect: () => null,
     });
-
-    mockPhotosFacade = {
-      photosList$: of([]),
-      loaded$: of(false),
-      load: () => undefined,
-    };
 
     await TestBed.configureTestingModule({
       imports: [SharedUiCommonModule, SharedUtilUiModule],
@@ -39,6 +40,7 @@ describe('PhotosComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PhotosComponent);
     component = fixture.componentInstance;
+    loadSpy.mockClear();
     fixture.detectChanges();
   });
 
@@ -46,38 +48,32 @@ describe('PhotosComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call photosFacade.load() on ngOnInit', () => {
-    jest.spyOn(mockPhotosFacade, 'load');
+  it('should not call photosFacade.load() if currentPage !== 1 on ngOnInit', () => {
+    component.currentPage$ = of(2);
+    component.ngOnInit();
+    expect(mockPhotosFacade.load).not.toHaveBeenCalled();
+  });
+
+  it('should call photosFacade.load() if currentPage === 1 on ngOnInit', () => {
+    component.currentPage$ = of(1);
     component.ngOnInit();
     expect(mockPhotosFacade.load).toHaveBeenCalled();
   });
 
   it('should subscribe to loaded$ on ngOnInit', () => {
-    jest.spyOn(mockPhotosFacade.loaded$, 'subscribe');
+    const spy = jest.spyOn(mockPhotosFacade.loaded$, 'subscribe');
     component.ngOnInit();
     expect(mockPhotosFacade.loaded$.subscribe).toHaveBeenCalled();
-  });
-
-  it('should unsubscribe on ngOnDestroy', () => {
-    const unsubscribeSpy = jest.spyOn(
-      component.loadedSubscription,
-      'unsubscribe'
-    );
-
-    component.ngOnDestroy();
-
-    expect(unsubscribeSpy).toHaveBeenCalled();
+    spy.mockClear();
   });
 
   it('should call photosFacade.load() on onScroll if loaded is true', () => {
-    jest.spyOn(mockPhotosFacade, 'load');
     component.loaded = true;
     component.onScroll();
     expect(mockPhotosFacade.load).toHaveBeenCalled();
   });
 
-  it('should not call photosFacade.load() on onScroll if loaded is false', () => {
-    jest.spyOn(mockPhotosFacade, 'load');
+  it('should call photosFacade.load() only on init and not on onScroll if loaded is false ', () => {
     component.loaded = false;
     component.onScroll();
     expect(mockPhotosFacade.load).not.toHaveBeenCalled();

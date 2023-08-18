@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PhotoCardComponent } from './photo-card.component';
+import { SharedUiCommonModule } from '@angular-nx-tdd/shared/ui-common';
 
 describe('PhotoCardComponent', () => {
   let component: PhotoCardComponent;
@@ -7,6 +8,7 @@ describe('PhotoCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [SharedUiCommonModule],
       declarations: [PhotoCardComponent],
     }).compileComponents();
 
