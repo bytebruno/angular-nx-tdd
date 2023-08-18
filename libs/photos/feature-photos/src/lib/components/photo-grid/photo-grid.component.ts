@@ -1,5 +1,5 @@
 import { Photo } from '@angular-nx-tdd/photos/domain';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'photos-photo-grid',
@@ -8,8 +8,13 @@ import { Component, Input } from '@angular/core';
 })
 export class PhotoGridComponent {
   @Input() photos: Photo[] | null = null;
+  @Output() clickEventEmitter = new EventEmitter<Photo | null>();
 
   trackById(_: number, photo: Photo): string {
     return photo.id;
+  }
+
+  cardClicked(photo: Photo | null) {
+    this.clickEventEmitter.emit(photo);
   }
 }

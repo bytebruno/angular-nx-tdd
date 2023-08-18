@@ -2,5 +2,6 @@
   <photos-photo-card
     *ngFor="let photo of photos; trackBy: trackById"
     [photo]="photo"
+    (clickEventEmitter)="cardClicked($event)"
   ></photos-photo-card>
 </div>
