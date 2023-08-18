@@ -1,6 +1,9 @@
 <ui-scroll-tracker (scrolled)="onScroll()">
   <ng-container *ngIf="photosList$ | async as photos">
-    <photos-photo-grid [photos]="photos"></photos-photo-grid>
+    <photos-photo-grid
+      [photos]="photos"
+      (clickEventEmitter)="saveAsFavorite($event)"
+    ></photos-photo-grid>
   </ng-container>
 </ui-scroll-tracker>
 <common-spinner *ngIf="(loaded$ | async) === false"></common-spinner>

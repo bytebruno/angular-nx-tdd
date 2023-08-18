@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { PhotosFacade } from '@angular-nx-tdd/photos/domain';
+import { Photo, PhotosFacade } from '@angular-nx-tdd/photos/domain';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -43,9 +43,13 @@ export class PhotosComponent implements OnInit, OnDestroy {
     this.photosFacade.load();
   }
 
-  onScroll() {
+  onScroll(): void {
     if (!this.loaded) return;
-    console.log('scrolled');
     this.photosFacade.load();
+  }
+
+  saveAsFavorite(photo: Photo | null): void {
+    if (photo === null) return;
+    this.photosFacade.saveAsFavorite(photo);
   }
 }
