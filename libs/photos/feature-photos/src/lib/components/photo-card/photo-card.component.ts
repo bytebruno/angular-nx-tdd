@@ -1,5 +1,5 @@
 import { Photo } from '@angular-nx-tdd/photos/domain';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'photos-photo-card',
@@ -8,4 +8,9 @@ import { Component, Input } from '@angular/core';
 })
 export class PhotoCardComponent {
   @Input() photo: Photo | null = null;
+  @Output() clickEventEmitter = new EventEmitter<Photo | null>();
+
+  emitClickEvent(): void {
+    this.clickEventEmitter.emit(this.photo);
+  }
 }
