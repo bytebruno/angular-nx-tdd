@@ -22,7 +22,7 @@ describe('HeaderComponent', () => {
       imports: [
         MaterialModule,
         RouterTestingModule.withRoutes([
-          { path: 'photos', component: HeaderComponent },
+          { path: '', component: HeaderComponent },
           { path: 'favorites', component: HeaderComponent },
         ]),
         NoopAnimationsModule,
@@ -50,10 +50,8 @@ describe('HeaderComponent', () => {
     expect(buttons[1].nativeElement.innerHTML.trim()).toBe('Favorites');
   });
 
-  it('should highlight first button if url is /photos', () => {
-    jest
-      .spyOn(component, 'currentUrl', 'get')
-      .mockImplementation(() => '/photos');
+  it('should highlight first button if url is /', () => {
+    jest.spyOn(component, 'currentUrl', 'get').mockImplementation(() => '/');
     fixture.detectChanges();
 
     const buttons = fixture.debugElement.queryAll(By.css('button'));
@@ -76,7 +74,7 @@ describe('HeaderComponent', () => {
     const photosBtn = fixture.debugElement.queryAll(By.css('button'))[0];
     photosBtn.nativeElement.click();
     tick();
-    expect(router.url).toBe('/photos');
+    expect(router.url).toBe('/');
   }));
 
   it('should redirect to favorites on button click', fakeAsync(() => {
