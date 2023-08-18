@@ -37,3 +37,8 @@ export const selectSelected = createSelector(
   selectSelectedId,
   (entities, selectedId) => selectedId && entities[selectedId]
 );
+
+export const selectCurrentPage = createSelector(
+  selectPhotosState,
+  (state: State) => state.currentPage
+);

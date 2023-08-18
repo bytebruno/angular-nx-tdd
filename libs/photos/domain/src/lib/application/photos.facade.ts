@@ -9,6 +9,7 @@ export class PhotosFacade {
   loaded$ = this.store.select(PhotosSelectors.selectPhotosLoaded);
   photosList$ = this.store.select(PhotosSelectors.selectAllPhotos);
   selectedPhotos$ = this.store.select(PhotosSelectors.selectSelected);
+  selectCurrentPage$ = this.store.select(PhotosSelectors.selectCurrentPage);
 
   constructor(private store: Store) {}
 
