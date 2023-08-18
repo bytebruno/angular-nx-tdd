@@ -1,19 +1,22 @@
 import { Injectable } from '@angular/core';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 
-import { loadPhotos } from '../+state/photos/photos.actions';
-import * as fromPhotos from '../+state/photos/photos.reducer';
+import { loadMorePhotos, loadPhotos } from '../+state/photos/photos.actions';
 import * as PhotosSelectors from '../+state/photos/photos.selectors';
 
 @Injectable({ providedIn: 'root' })
 export class PhotosFacade {
-  loaded$ = this.store.pipe(select(PhotosSelectors.getPhotosLoaded));
-  photosList$ = this.store.pipe(select(PhotosSelectors.getAllPhotos));
-  selectedPhotos$ = this.store.pipe(select(PhotosSelectors.getSelected));
+  loaded$ = this.store.select(PhotosSelectors.selectPhotosLoaded);
+  photosList$ = this.store.select(PhotosSelectors.selectAllPhotos);
+  selectedPhotos$ = this.store.select(PhotosSelectors.selectSelected);
 
-  constructor(private store: Store<fromPhotos.PhotosPartialState>) {}
+  constructor(private store: Store) {}
 
   load(): void {
     this.store.dispatch(loadPhotos());
+  }
+
+  loadMore(): void {
+    this.store.dispatch(loadMorePhotos());
   }
 }
