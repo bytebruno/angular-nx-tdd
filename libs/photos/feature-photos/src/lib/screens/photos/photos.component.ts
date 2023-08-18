@@ -4,7 +4,6 @@ import { PhotosFacade } from '@angular-nx-tdd/photos/domain';
 @Component({
   selector: 'photos-photos',
   templateUrl: './photos.component.html',
-  styleUrls: ['./photos.component.scss'],
 })
 export class PhotosComponent implements OnInit {
   photosList$ = this.photosFacade.photosList$;

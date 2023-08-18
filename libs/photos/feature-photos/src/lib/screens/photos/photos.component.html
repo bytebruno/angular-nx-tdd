@@ -1,9 +1,3 @@
-<h1>photos-photos</h1>
-
-<table class="table">
-  <tr *ngFor="let photos of photosList$ | async">
-    <td>{{ photos.id }}</td>
-    <td>{{ photos.author }}</td>
-    <td>{{ photos.download_url }}</td>
-  </tr>
-</table>
+<ng-container *ngIf="photosList$ | async as photos">
+  <photos-photo-grid [photos]="photos"></photos-photo-grid>
+</ng-container>
