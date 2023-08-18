@@ -1,11 +1,16 @@
 <mat-toolbar color="primary">
   <div class="header-buttons">
-    <button mat-flat-button [color]="currentUrl === '/photos' ? 'accent' : ''">
+    <button
+      mat-flat-button
+      [color]="currentUrl === '/photos' ? 'accent' : ''"
+      routerLink="/photos"
+    >
       Photos
     </button>
     <button
       mat-flat-button
       [color]="currentUrl === '/favorites' ? 'accent' : ''"
+      routerLink="/favorites"
     >
       Favorites
     </button>
