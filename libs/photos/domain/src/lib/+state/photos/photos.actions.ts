@@ -12,3 +12,5 @@ export const loadPhotosFailure = createAction(
   '[Photos] Load Photos Failure',
   props<{ error: any }>()
 );
+
+export const loadMorePhotos = createAction('[Photos] Load More Photos');
