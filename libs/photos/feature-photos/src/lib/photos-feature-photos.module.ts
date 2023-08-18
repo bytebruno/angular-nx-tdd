@@ -8,6 +8,7 @@ import { PhotoCardComponent } from './components/photo-card/photo-card.component
 import { SharedUiCommonModule } from '@angular-nx-tdd/shared/ui-common';
 import { PhotoGridComponent } from './components/photo-grid/photo-grid.component';
 import { SharedUtilUiModule } from '@angular-nx-tdd/shared/util-ui';
+import { PhotoDetailComponent } from './screens/photo-detail/photo-detail.component';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { SharedUtilUiModule } from '@angular-nx-tdd/shared/util-ui';
     FavoritesComponent,
     PhotoCardComponent,
     PhotoGridComponent,
+    PhotoDetailComponent,
   ],
   exports: [PhotosComponent],
 })
