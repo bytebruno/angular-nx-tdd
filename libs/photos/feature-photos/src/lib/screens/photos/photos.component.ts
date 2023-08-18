@@ -32,6 +32,6 @@ export class PhotosComponent implements OnInit, OnDestroy {
   onScroll() {
     if (!this.loaded) return;
     console.log('scrolled');
-    this.photosFacade.loadMore();
+    this.load();
   }
 }

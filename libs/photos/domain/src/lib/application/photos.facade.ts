@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { loadMorePhotos, loadPhotos } from '../+state/photos/photos.actions';
+import { loadPhotos } from '../+state/photos/photos.actions';
 import * as PhotosSelectors from '../+state/photos/photos.selectors';
 
 @Injectable({ providedIn: 'root' })
@@ -15,9 +15,5 @@ export class PhotosFacade {
 
   load(): void {
     this.store.dispatch(loadPhotos());
-  }
-
-  loadMore(): void {
-    this.store.dispatch(loadMorePhotos());
   }
 }

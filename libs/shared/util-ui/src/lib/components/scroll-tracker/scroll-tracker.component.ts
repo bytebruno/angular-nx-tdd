@@ -7,6 +7,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { Subject, debounceTime, delay, skip } from 'rxjs';
 
 @Component({
   selector: 'ui-scroll-tracker',
@@ -17,8 +18,9 @@ export class ScrollTrackerComponent implements AfterViewInit, OnDestroy {
   @ViewChild('anchor') anchor: ElementRef<HTMLElement> | undefined;
   @Output() scrolled = new EventEmitter();
 
+  eventManager: Subject<null> = new Subject<null>();
+
   private observer: IntersectionObserver | undefined;
-  private hasIntersected = false;
 
   ngAfterViewInit(): void {
     this.observer = new IntersectionObserver(
@@ -30,13 +32,16 @@ export class ScrollTrackerComponent implements AfterViewInit, OnDestroy {
     if (this.anchor) {
       this.observer.observe(this.anchor.nativeElement);
     }
+
+    this.eventManager
+      .pipe(skip(1), debounceTime(100))
+      .subscribe(() => this.scrolled.emit());
   }
 
   emitScrollEvent(entry: IntersectionObserverEntry) {
-    if (entry.isIntersecting && this.hasIntersected) {
-      this.scrolled.emit();
+    if (entry.isIntersecting) {
+      this.eventManager.next(null);
     }
-    this.hasIntersected = true;
   }
 
   ngOnDestroy(): void {

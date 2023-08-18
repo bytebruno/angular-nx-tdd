@@ -22,7 +22,6 @@ describe('PhotosComponent', () => {
       photosList$: of([]),
       loaded$: of(false),
       load: () => undefined,
-      loadMore: () => undefined,
     };
 
     await TestBed.configureTestingModule({
@@ -70,17 +69,17 @@ describe('PhotosComponent', () => {
     expect(unsubscribeSpy).toHaveBeenCalled();
   });
 
-  it('should call photosFacade.loadMore() on onScroll if loaded is true', () => {
-    jest.spyOn(mockPhotosFacade, 'loadMore');
+  it('should call photosFacade.load() on onScroll if loaded is true', () => {
+    jest.spyOn(mockPhotosFacade, 'load');
     component.loaded = true;
     component.onScroll();
-    expect(mockPhotosFacade.loadMore).toHaveBeenCalled();
+    expect(mockPhotosFacade.load).toHaveBeenCalled();
   });
 
-  it('should not call photosFacade.loadMore() on onScroll if loaded is false', () => {
-    jest.spyOn(mockPhotosFacade, 'loadMore');
+  it('should not call photosFacade.load() on onScroll if loaded is false', () => {
+    jest.spyOn(mockPhotosFacade, 'load');
     component.loaded = false;
     component.onScroll();
-    expect(mockPhotosFacade.loadMore).not.toHaveBeenCalled();
+    expect(mockPhotosFacade.load).not.toHaveBeenCalled();
   });
 });

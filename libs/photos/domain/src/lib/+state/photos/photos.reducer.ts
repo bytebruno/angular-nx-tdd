@@ -36,21 +36,17 @@ const photosReducer = createReducer(
     })
   ),
   on(PhotosActions.loadPhotosSuccess, (state, { photos }) =>
-    photosAdapter.upsertMany(photos, { ...state, loaded: true })
+    photosAdapter.upsertMany(photos, {
+      ...state,
+      loaded: true,
+      currentPage: state.currentPage + 1,
+    })
   ),
   on(
     PhotosActions.loadPhotosFailure,
     (state, { error }): State => ({
       ...state,
       error,
-    })
-  ),
-  on(
-    PhotosActions.loadMorePhotos,
-    (state): State => ({
-      ...state,
-      loaded: false,
-      error: null,
     })
   )
 );
