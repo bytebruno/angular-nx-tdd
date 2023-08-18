@@ -51,7 +51,7 @@ describe('PhotosDataService', () => {
   });
 
   it('load should return data', () => {
-    service.load().subscribe((res) => {
+    service.load(1).subscribe((res) => {
       expect(res).toEqual(dummyPhotoListRes);
     });
 
