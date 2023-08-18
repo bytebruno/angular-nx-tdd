@@ -19,7 +19,10 @@
       "@angular-nx-tdd/photos/feature-photos": [
         "libs/photos/feature-photos/src/index.ts"
       ],
-      "@angular-nx-tdd/shared/ui-common": ["libs/shared/ui-common/src/index.ts"]
+      "@angular-nx-tdd/shared/ui-common": [
+        "libs/shared/ui-common/src/index.ts"
+      ],
+      "@angular-nx-tdd/shared/util-ui": ["libs/shared/util-ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
