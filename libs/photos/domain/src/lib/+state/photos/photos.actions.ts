@@ -1,11 +1,11 @@
 import { createAction, props } from '@ngrx/store';
-import { Photos } from '../../entities/photos';
+import { Photo } from '../../entities/photo';
 
 export const loadPhotos = createAction('[Photos] Load Photos');
 
 export const loadPhotosSuccess = createAction(
   '[Photos] Load Photos Success',
-  props<{ photos: Photos[] }>()
+  props<{ photos: Photo[] }>()
 );
 
 export const loadPhotosFailure = createAction(

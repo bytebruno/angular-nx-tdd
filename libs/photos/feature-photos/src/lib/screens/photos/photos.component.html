@@ -3,7 +3,7 @@
 <table class="table">
   <tr *ngFor="let photos of photosList$ | async">
     <td>{{ photos.id }}</td>
-    <td>{{ photos.name }}</td>
-    <td>{{ photos.description }}</td>
+    <td>{{ photos.author }}</td>
+    <td>{{ photos.download_url }}</td>
   </tr>
 </table>

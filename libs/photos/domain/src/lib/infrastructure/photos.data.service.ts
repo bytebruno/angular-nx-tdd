@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { Photos } from '../entities/photos';
+import { Photo } from '../entities/photo';
 
 @Injectable({ providedIn: 'root' })
 export class PhotosDataService {
   constructor(private http: HttpClient) {}
 
-  load(): Observable<Photos[]> {
+  load(): Observable<Photo[]> {
     // Uncomment if needed
     /*
         const url = '...';
@@ -16,18 +16,6 @@ export class PhotosDataService {
         return this.http.get<Photos[]>(url, {params, headers});
         */
 
-    return of([
-      { id: 1, name: 'Lorem ipsum', description: 'Lorem ipsum dolor sit amet' },
-      {
-        id: 2,
-        name: 'At vero eos',
-        description: 'At vero eos et accusam et justo duo dolores',
-      },
-      {
-        id: 3,
-        name: 'Duis autem',
-        description: 'Duis autem vel eum iriure dolor in hendrerit',
-      },
-    ]);
+    return of([]);
   }
 }
