@@ -4,7 +4,7 @@ import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import * as PhotosActions from './photos.actions';
 import { Photo } from '../../entities/photo';
 
-export const PHOTOS_FEATURE_KEY = 'photos-photos';
+export const PHOTOS_FEATURE_KEY = 'photos';
 
 export interface State extends EntityState<Photo> {
   selectedId?: string | number;

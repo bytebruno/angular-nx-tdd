@@ -12,7 +12,7 @@ export class PhotosEffects {
   loadPhotos$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(PhotosActions.loadPhotos),
-      concatLatestFrom(() => this.photosFacade.selectCurrentPage$),
+      concatLatestFrom(() => this.photosFacade.currentPage$),
       switchMap(([_, currentPage]) =>
         this.photosDataService.load(currentPage).pipe(
           map((photos) => {
