@@ -1,1 +1,3 @@
-<p>favorites works!</p>
+<ng-container *ngIf="favorites$ | async as photos">
+  <photos-photo-grid [photos]="photos"></photos-photo-grid>
+</ng-container>
