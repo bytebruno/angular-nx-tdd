@@ -17,4 +17,8 @@ export class PhotosComponent implements OnInit {
   load(): void {
     this.photosFacade.load();
   }
+
+  onScroll() {
+    console.log('scroll');
+  }
 }

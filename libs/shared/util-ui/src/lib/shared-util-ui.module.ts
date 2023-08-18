@@ -5,5 +5,6 @@ import { ScrollTrackerComponent } from './components/scroll-tracker/scroll-track
 @NgModule({
   imports: [CommonModule],
   declarations: [ScrollTrackerComponent],
+  exports: [ScrollTrackerComponent],
 })
 export class SharedUtilUiModule {}

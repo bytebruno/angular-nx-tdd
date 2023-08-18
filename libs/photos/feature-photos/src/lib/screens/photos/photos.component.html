@@ -1,3 +1,5 @@
-<ng-container *ngIf="photosList$ | async as photos">
-  <photos-photo-grid [photos]="photos"></photos-photo-grid>
-</ng-container>
+<ui-scroll-tracker (scrolled)="onScroll()">
+  <ng-container *ngIf="photosList$ | async as photos">
+    <photos-photo-grid [photos]="photos"></photos-photo-grid>
+  </ng-container>
+</ui-scroll-tracker>
