@@ -1,1 +1,6 @@
-<p>photo-grid works!</p>
+<div class="grid">
+  <photos-photo-card
+    *ngFor="let photo of photos; trackBy: trackById"
+    [photo]="photo"
+  ></photos-photo-card>
+</div>

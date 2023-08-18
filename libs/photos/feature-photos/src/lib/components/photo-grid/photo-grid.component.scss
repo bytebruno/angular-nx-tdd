@@ -1,0 +1,19 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, 300px);
+  gap: 20px;
+  justify-content: space-evenly;
+  padding-top: 20px;
+
+  @media only screen and (min-width: 600px) {
+    grid-template-columns: repeat(2, 300px);
+  }
+
+  @media only screen and (min-width: 992px) {
+    grid-template-columns: repeat(3, 300px);
+  }
+
+  @media only screen and (min-width: 1200px) {
+    grid-template-columns: repeat(4, 250px);
+  }
+}
