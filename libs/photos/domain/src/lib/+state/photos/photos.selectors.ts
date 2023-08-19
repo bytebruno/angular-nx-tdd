@@ -47,3 +47,11 @@ export const selectFavorites = createSelector(
   selectPhotosState,
   (state: State) => selectAll(state.favorites)
 );
+
+export const selectFavoritesEntities = createSelector(
+  selectPhotosState,
+  (state: State) => selectEntities(state.favorites)
+);
+
+export const selectFavoriteById = (id: number) =>
+  createSelector(selectFavoritesEntities, (entities) => entities[id]);

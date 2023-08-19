@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { addFavorite, loadPhotos } from '../+state/photos/photos.actions';
 import * as PhotosSelectors from '../+state/photos/photos.selectors';
 import { Photo } from '../entities/photo';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class PhotosFacade {
@@ -11,7 +12,6 @@ export class PhotosFacade {
   favorites$ = this.store.select(PhotosSelectors.selectFavorites);
   loaded$ = this.store.select(PhotosSelectors.selectPhotosLoaded);
   photosList$ = this.store.select(PhotosSelectors.selectAllPhotos);
-  selectedPhotos$ = this.store.select(PhotosSelectors.selectSelected);
 
   constructor(private store: Store) {}
 
@@ -21,5 +21,9 @@ export class PhotosFacade {
 
   saveAsFavorite(photo: Photo): void {
     this.store.dispatch(addFavorite({ photo }));
+  }
+
+  getFavoriteById(id: number): Observable<Photo | undefined> {
+    return this.store.select(PhotosSelectors.selectFavoriteById(id));
   }
 }
