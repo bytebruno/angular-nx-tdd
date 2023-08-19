@@ -21,6 +21,7 @@
     "@ngrx/entity": "^16.2.0",
     "@ngrx/store": "^16.2.0",
     "@nx/angular": "16.4.1",
+    "lodash-es": "^4.17.21",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
@@ -47,6 +48,7 @@
     "@nx/workspace": "16.4.1",
     "@schematics/angular": "~16.1.0",
     "@types/jest": "^29.4.0",
+    "@types/lodash-es": "^4.17.8",
     "@types/node": "16.11.7",
     "@typescript-eslint/eslint-plugin": "^5.58.0",
     "@typescript-eslint/parser": "^5.58.0",
