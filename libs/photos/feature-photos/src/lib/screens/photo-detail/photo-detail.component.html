@@ -4,7 +4,12 @@
     [useFullResolution]="true"
     [clickable]="false"
   ></photos-photo-card>
-  <button mat-flat-button color="primary" (click)="removeFavorite()">
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="removeFavorite()"
+    data-cy="remove-favorite-button"
+  >
     Remove from favorites
   </button>
 </div>
