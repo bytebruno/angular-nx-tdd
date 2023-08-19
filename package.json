@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "npx nx serve angular-nx-tdd"
+    "start": "npx nx serve angular-nx-tdd",
+    "test": "npx nx run-many --all --target=test --parallel",
+    "build": "npx nx build angular-nx-tdd",
+    "lint": "nx run-many --all --target=lint --parallel"
   },
   "private": true,
   "dependencies": {
