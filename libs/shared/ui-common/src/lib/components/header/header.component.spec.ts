@@ -70,6 +70,17 @@ describe('HeaderComponent', () => {
     expect(buttons[1].classes['mat-accent']).toBe(true);
   });
 
+  it('should highlight second button if url includes /photo', () => {
+    jest
+      .spyOn(component, 'currentUrl', 'get')
+      .mockImplementation(() => '/photo/10');
+    fixture.detectChanges();
+
+    const buttons = fixture.debugElement.queryAll(By.css('button'));
+    expect(buttons[0].classes['mat-accent']).toBe(undefined);
+    expect(buttons[1].classes['mat-accent']).toBe(true);
+  });
+
   it('should redirect to photos on button click', fakeAsync(() => {
     const photosBtn = fixture.debugElement.queryAll(By.css('button'))[0];
     photosBtn.nativeElement.click();
