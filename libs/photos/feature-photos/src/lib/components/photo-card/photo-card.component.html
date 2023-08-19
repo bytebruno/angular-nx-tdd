@@ -1,4 +1,4 @@
-<mat-card (click)="emitClickEvent()">
+<mat-card (click)="emitClickEvent()" [ngClass]="clickable ? 'clickable' : ''">
   <img
     mat-card-image
     [src]="useFullResolution ? photo?.download_url : photo?.lite_download_url"

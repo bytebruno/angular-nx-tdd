@@ -1,3 +1,18 @@
+@use '@angular/material' as mat;
+
 :host {
   width: 90%;
+}
+
+.clickable {
+  cursor: pointer;
+  transition: transform 0.2s;
+
+  &:hover {
+    @include mat.elevation(6);
+    transform: scale(1.05);
+  }
+  &:active {
+    transform: translateY(6px);
+  }
 }
