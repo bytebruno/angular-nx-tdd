@@ -1,6 +1,6 @@
-import { Photo } from '@angular-nx-tdd/photos/domain';
+import { Photo, PhotosFacade } from '@angular-nx-tdd/photos/domain';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'photos-photo-detail',
@@ -9,10 +9,20 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PhotoDetailComponent implements OnInit {
   photo: Photo | null = null;
-  constructor(private activatedRoute: ActivatedRoute) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private photosFacade: PhotosFacade,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     const snapshot = this.activatedRoute.snapshot;
     this.photo = snapshot.data['selectedFavorite'];
+  }
+
+  removeFavorite() {
+    if (!this.photo) return;
+    this.photosFacade.removeFavorite(this.photo.id);
+    this.router.navigateByUrl('/favorites');
   }
 }

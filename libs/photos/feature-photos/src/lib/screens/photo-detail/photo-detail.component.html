@@ -3,5 +3,7 @@
     [photo]="photo"
     [useFullResolution]="true"
   ></photos-photo-card>
-  <button mat-flat-button color="primary">Remove from favorites</button>
+  <button mat-flat-button color="primary" (click)="removeFavorite()">
+    Remove from favorites
+  </button>
 </div>
