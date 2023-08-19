@@ -9,7 +9,11 @@
     </button>
     <button
       mat-flat-button
-      [color]="currentUrl === '/favorites' ? 'accent' : ''"
+      [color]="
+        currentUrl === '/favorites' || currentUrl.includes('/photo')
+          ? 'accent'
+          : ''
+      "
       routerLink="/favorites"
     >
       Favorites
