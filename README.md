@@ -12,6 +12,8 @@ Photo stream web app using Angular 16 (DDD approach), Nx, NgRx, RxJS, Jest, Cypr
 #### Run tests
 
 - Run unit tests - `npm run test`
+- Run e2e tests - `npm run e2e`
+  - Seeing on browser - `npm run e2e:watch`
 
 #### Other commands
 
