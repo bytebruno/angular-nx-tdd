@@ -5,10 +5,14 @@ import { PhotosEffects } from './+state/photos/photos.effects';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
+import { photosStorageMetaReducer } from './+state/photos/photos.storage.metareducer';
+
 @NgModule({
   imports: [
     CommonModule,
-    StoreModule.forFeature(fromPhotos.PHOTOS_FEATURE_KEY, fromPhotos.reducer),
+    StoreModule.forFeature(fromPhotos.PHOTOS_FEATURE_KEY, fromPhotos.reducer, {
+      metaReducers: [photosStorageMetaReducer],
+    }),
     EffectsModule.forFeature([PhotosEffects]),
   ],
 })
