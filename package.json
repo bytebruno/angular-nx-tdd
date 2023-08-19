@@ -5,6 +5,8 @@
   "scripts": {
     "start": "npx nx serve angular-nx-tdd",
     "test": "npx nx run-many --all --target=test --parallel",
+    "e2e": "npx nx e2e angular-nx-tdd-e2e",
+    "e2e:watch": "npx nx e2e angular-nx-tdd-e2e --watch",
     "build": "npx nx build angular-nx-tdd",
     "lint": "nx run-many --all --target=lint --parallel"
   },
