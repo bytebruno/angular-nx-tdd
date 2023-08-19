@@ -19,7 +19,6 @@ export class PhotosEffects {
       switchMap(([_, currentPage]) =>
         this.photosDataService.load(currentPage).pipe(
           map((photos) => {
-            console.log(currentPage);
             return PhotosActions.loadPhotosSuccess({
               photos: this.photosDataUtilService.addLiteUrlToPhoto(photos),
             });
