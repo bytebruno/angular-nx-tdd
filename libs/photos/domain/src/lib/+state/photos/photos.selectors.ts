@@ -1,35 +1,39 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { PHOTOS_FEATURE_KEY, State, photosAdapter } from './photos.reducer';
+import {
+  PHOTOS_FEATURE_KEY,
+  PhotosState,
+  photosAdapter,
+} from './photos.reducer';
 
 // Lookup the 'Photos' feature state managed by NgRx
 export const selectPhotosState =
-  createFeatureSelector<State>(PHOTOS_FEATURE_KEY);
+  createFeatureSelector<PhotosState>(PHOTOS_FEATURE_KEY);
 
 const { selectAll, selectEntities } = photosAdapter.getSelectors();
 
 export const selectPhotosLoaded = createSelector(
   selectPhotosState,
-  (state: State) => state.loaded
+  (state: PhotosState) => state.loaded
 );
 
 export const selectPhotosError = createSelector(
   selectPhotosState,
-  (state: State) => state.error
+  (state: PhotosState) => state.error
 );
 
 export const selectAllPhotos = createSelector(
   selectPhotosState,
-  (state: State) => selectAll(state)
+  (state: PhotosState) => selectAll(state)
 );
 
 export const selectPhotosEntities = createSelector(
   selectPhotosState,
-  (state: State) => selectEntities(state)
+  (state: PhotosState) => selectEntities(state)
 );
 
 export const selectSelectedId = createSelector(
   selectPhotosState,
-  (state: State) => state.selectedId
+  (state: PhotosState) => state.selectedId
 );
 
 export const selectSelected = createSelector(
@@ -40,17 +44,17 @@ export const selectSelected = createSelector(
 
 export const selectCurrentPage = createSelector(
   selectPhotosState,
-  (state: State) => state.currentPage
+  (state: PhotosState) => state.currentPage
 );
 
 export const selectFavorites = createSelector(
   selectPhotosState,
-  (state: State) => selectAll(state.favorites)
+  (state: PhotosState) => selectAll(state.favorites)
 );
 
 export const selectFavoritesEntities = createSelector(
   selectPhotosState,
-  (state: State) => selectEntities(state.favorites)
+  (state: PhotosState) => selectEntities(state.favorites)
 );
 
 export const selectFavoriteById = (id: number) =>

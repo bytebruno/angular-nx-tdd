@@ -6,7 +6,7 @@ import { Photo } from '../../entities/photo';
 
 export const PHOTOS_FEATURE_KEY = 'photos';
 
-export interface State extends EntityState<Photo> {
+export interface PhotosState extends EntityState<Photo> {
   selectedId?: string | number;
   loaded: boolean;
   error?: string | null;
@@ -15,14 +15,14 @@ export interface State extends EntityState<Photo> {
 }
 
 export interface PhotosPartialState {
-  readonly [PHOTOS_FEATURE_KEY]: State;
+  readonly [PHOTOS_FEATURE_KEY]: PhotosState;
 }
 
 export const photosAdapter: EntityAdapter<Photo> = createEntityAdapter<Photo>();
 export const favoritesAdapter: EntityAdapter<Photo> =
   createEntityAdapter<Photo>();
 
-export const initialState: State = photosAdapter.getInitialState({
+export const initialState: PhotosState = photosAdapter.getInitialState({
   // set initial required properties
   loaded: false,
   currentPage: 1,
@@ -33,7 +33,7 @@ const photosReducer = createReducer(
   initialState,
   on(
     PhotosActions.loadPhotos,
-    (state): State => ({
+    (state): PhotosState => ({
       ...state,
       loaded: false,
       error: null,
@@ -48,14 +48,14 @@ const photosReducer = createReducer(
   ),
   on(
     PhotosActions.loadPhotosFailure,
-    (state, { error }): State => ({
+    (state, { error }): PhotosState => ({
       ...state,
       error,
     })
   ),
   on(
     PhotosActions.addFavorite,
-    (state, { photo }): State => ({
+    (state, { photo }): PhotosState => ({
       ...state,
       favorites: favoritesAdapter.upsertOne(photo, {
         ...state.favorites,
@@ -64,6 +64,6 @@ const photosReducer = createReducer(
   )
 );
 
-export function reducer(state: State | undefined, action: Action) {
+export function reducer(state: PhotosState | undefined, action: Action) {
   return photosReducer(state, action);
 }
