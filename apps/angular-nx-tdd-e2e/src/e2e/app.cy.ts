@@ -1,3 +1,4 @@
+/* eslint-disable cypress/no-unnecessary-waiting */
 describe('angular-nx-tdd', () => {
   beforeEach(() => cy.visit('/'));
 
