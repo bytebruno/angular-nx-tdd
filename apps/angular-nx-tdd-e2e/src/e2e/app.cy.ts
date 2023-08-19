@@ -1,13 +1,23 @@
-import { getGreeting } from '../support/app.po';
-
 describe('angular-nx-tdd', () => {
   beforeEach(() => cy.visit('/'));
 
-  it('should display welcome message', () => {
-    // Custom command example, see `../support/commands.ts` file
-    cy.login('my-email@something.com', 'myPassword');
+  const path = {
+    photoCard: '[data-cy="photo-card"]',
+  };
 
-    // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome angular-nx-tdd');
+  it('should scroll when reach the end and load more images', () => {
+    cy.intercept('GET', '**/*/list?**').as('getPhotos');
+    cy.wait('@getPhotos').then((req) => {
+      expect(req.request.query['page']).to.eq('1');
+      expect(req.response?.body.length).to.eq(30);
+    });
+    cy.wait(1000);
+    cy.get(path.photoCard).then((cards) => expect(cards.length).to.eq(30));
+    cy.scrollTo('bottom');
+    cy.wait('@getPhotos').then((req) => {
+      expect(req.request.query['page']).to.eq('2');
+      expect(req.response?.body.length).to.eq(30);
+    });
+    cy.get(path.photoCard).then((cards) => expect(cards.length).to.eq(60));
   });
 });
