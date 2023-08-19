@@ -7,7 +7,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { Subject, debounceTime, delay, skip } from 'rxjs';
+import { Subject, debounceTime, skip } from 'rxjs';
 
 @Component({
   selector: 'ui-scroll-tracker',
