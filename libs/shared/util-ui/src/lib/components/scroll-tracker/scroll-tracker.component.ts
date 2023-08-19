@@ -27,7 +27,7 @@ export class ScrollTrackerComponent implements AfterViewInit, OnDestroy {
       ([entry]) => {
         this.emitScrollEvent(entry);
       },
-      { rootMargin: '10px', threshold: 0.01 }
+      { rootMargin: '300px', threshold: 0.2 }
     );
     if (this.anchor) {
       this.observer.observe(this.anchor.nativeElement);
