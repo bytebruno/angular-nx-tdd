@@ -29,3 +29,21 @@ Photo stream web app using Angular 16 (DDD approach), Nx, NgRx, RxJS, Jest, Cypr
 - [Jest](https://jestjs.io/)
 - [Cypress](https://www.cypress.io/)
 - [Angular Material](https://material.angular.io/)
+
+## Screenshots
+
+### Photo stream
+
+![Photo stream](docs/screenshots/photo-stream.png)
+
+### Photo stream infinite scrolling
+
+![Photo stream infinite scrolling](docs/screenshots/photo-stream-load.png)
+
+### Favorites
+
+![Favorites](docs/screenshots/favorites.png)
+
+### Photo detail
+
+![Photo detail](docs/screenshots/photo-detail.png)
