@@ -17,3 +17,8 @@ export const addFavorite = createAction(
   '[Photos] Add Favorite',
   props<{ photo: Photo }>()
 );
+
+export const removeFavorite = createAction(
+  '[Photos] Remove Favorite',
+  props<{ photoId: string }>()
+);

@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { addFavorite, loadPhotos } from '../+state/photos/photos.actions';
+import {
+  addFavorite,
+  loadPhotos,
+  removeFavorite,
+} from '../+state/photos/photos.actions';
 import * as PhotosSelectors from '../+state/photos/photos.selectors';
 import { Photo } from '../entities/photo';
 import { Observable } from 'rxjs';
@@ -21,6 +25,10 @@ export class PhotosFacade {
 
   saveAsFavorite(photo: Photo): void {
     this.store.dispatch(addFavorite({ photo }));
+  }
+
+  removeFavorite(photoId: string): void {
+    this.store.dispatch(removeFavorite({ photoId }));
   }
 
   getFavoriteById(id: number): Observable<Photo | undefined> {

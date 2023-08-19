@@ -61,6 +61,15 @@ const photosReducer = createReducer(
         ...state.favorites,
       }),
     })
+  ),
+  on(
+    PhotosActions.removeFavorite,
+    (state, { photoId }): PhotosState => ({
+      ...state,
+      favorites: favoritesAdapter.removeOne(photoId, {
+        ...state.favorites,
+      }),
+    })
   )
 );
 
