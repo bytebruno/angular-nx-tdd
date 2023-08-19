@@ -1,3 +1,7 @@
-<mat-card class="card" (click)="emitClickEvent()">
-  <img mat-card-image [src]="photo?.lite_download_url" [alt]="photo?.author" />
+<mat-card (click)="emitClickEvent()">
+  <img
+    mat-card-image
+    [src]="useFullResolution ? photo?.download_url : photo?.lite_download_url"
+    [alt]="photo?.author"
+  />
 </mat-card>

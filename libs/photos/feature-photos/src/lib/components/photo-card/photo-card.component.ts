@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class PhotoCardComponent {
   @Input() photo: Photo | null = null;
+  @Input() useFullResolution = false;
   @Output() clickEventEmitter = new EventEmitter<Photo | null>();
 
   emitClickEvent(): void {
